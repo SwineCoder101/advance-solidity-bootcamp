@@ -1,0 +1,160 @@
+Gasper
+access list new transaction types
+nonce
+bloom filters
+
+AA
+different signature schemes
+allow different people to transact
+available on starknet
+----------------------------------------------
+Day 2
+contract design - have an idea of the interface you want to expose to the world
+modifiers increase the size of the contract, have a jump to the modifier code in new compilers
+
+indexed keyword in front of events, make it queriable
+use arrays to iterate through mappings
+two different syntaxes for creating an instance of a struct
+order of inheriting contracts is important, makes a difference to the behaviour of the contract
+
+string.concat(s1,s2)
+
+enums, stored in a uint8
+
+Storage - permanent data
+Memory - temporary, outside of the function scope it gets discarded
+calldata - cheaper than memory, used
+
+memory vs calldata - we can change the value of memory, 
+we cannot change calldata it is immutabe
+
+immutable can be defined at compile time
+
+fallback() - if a transaction calls a function that doesn't exist (not matching method signatures)
+recieve() - hook when contract recieves ether
+
+Type Error,
+require, assert (check if condition is holding) and revert (stop execution)
+calling external contracts always use try catch
+custom errors good for optimization
+
+using other contracts/libraries - compile time and runtime distinguish
+- specific syntax for using libraries
+ie using Math for uint256;
+
+check slide 35 for deploying libraries !!!!!
+
+pre - compiled contracts
+checking signatures,
+hashing (sha256hash)
+0x04 address of a pre compiled contracts
+
+Fee schedule
+Every block has a base Fee
+
+delete storage if its no longer needed
+
+event selector for non anonymous event E to access the 32- byt selector topic
+library references
+
+block.basefee
+block.difficulty
+block.prerandao
+
+self dstruct is deprecated
+
+access events from other contracts
+initialization of immutable variables
+
+function selectors, EVM knows which function to call by scheme, functions have
+a signature, slide 43 
+
+encode with signature
+wrap/unwrap outbox into types
+
+function types - used as callbacks
+
+Q - In what scenario/case would we need to use inline assembly?
+
+
+----------------------------------------------------------------------------------
+data structures - merkle patricia trees
+verkle tree - efficient way of storing data and retrieving compared to merkle
+
+slide 2 of lesson t is old diagram (a little out of date)
+
+world state trie will hold key value pairs of a contract
+
+what state changes have been made and gas reciepts are given in bloom filters
+
+block fields have changed
+attestations
+
+world state
+
+Miners slide 9 should be block producers
+check if signatures of the transaction is valid
+nonce on a transaction is valid, equivalent to the sender accounts current nonce
+
+----------------------------------------------------------------------------------
+Day 3
+memory pointers
+slots, for fixed sized items,
+mapping size can grow aswell as arrays,
+Sol to uml, tool in foundry to shows the stack
+
+opcodes - pop,push,dup,swap
+
+upgradability
+
+contract call vs delegate call , proxy contract maintains the state, where as with contract call the
+constructor iniates the state only once
+
+upgrading is an anti pattern, don't do it
+a registry contract, hold the latest address versino of a contract
+function contract (business logic) and data contract (link to the function logic)
+proxy,diamond,strategy patterns
+pulggable modules, gnosis safe
+
+fallback() // delegate call
+
+append to the storage when we upgrade, don't overwrite variables from your old implementations
+try using some governances mechanism to bring back trust when upgrading the contract
+
+initialiser for upgradeable cotnracts rather than the constructor
+
+is there a design pattern for initializing with x number of data fields?
+
+Eternal storage for every datatype
+
+HW3
+think about pre compiled contracts
+
+----------------------------------------------------------------------------------
+Day 4
+
+check out tenderly
+forge,
+fuzz testing,
+Chisel
+
+
+first 16 bytes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+1. Why is client diversity important for Ethereum
+This reduces risk of bugs or vulnerabilities from taking down the entire network. 
+It ensures resiliency within the network for any implementation deployed
+
+2. Where is the full Ethereum state held ?
+the state is held within data structures called state trie, there are four types world, transaction, reciept and account storage
+
+
+3. What is a replay attack ? , which 2 pieces of information
+can prevent it ?
+An attacker copies a victims transactions and replays it on chain. This can be handled via a nonce which can get incremented for 
+every transaction or duplicate transaction hashes
+
+4. In a contract, how do we know who called a view function ?
+we can view the address of the caller through msg.sender, this is local to the contract
