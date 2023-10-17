@@ -69,6 +69,10 @@ initialization of immutable variables
 function selectors, EVM knows which function to call by scheme, functions have
 a signature, slide 43 
 
+The FIRST FOUR BYTES of the call data for a function call
+specifies the function to be called.
+
+
 encode with signature
 wrap/unwrap outbox into types
 
@@ -102,6 +106,12 @@ memory pointers
 slots, for fixed sized items,
 mapping size can grow aswell as arrays,
 Sol to uml, tool in foundry to shows the stack
+
+
+Transaction Tries: records transaction request
+Transaction Receipt Tries: records the transaction
+outcome
+
 
 opcodes - pop,push,dup,swap
 
@@ -140,10 +150,24 @@ Chisel
 
 
 first 16 bytes
+----------------------------------------------------------------------------------
+Day 5
 
+Stack is 256 bits wide, only the top 16 elements is viewable 
 
+----------------------------------------------------------------------------------
+Day 6
 
+extcodessize - used for isContract, does not work for all circumstances check for eoa
 
+return of a call, check if it has succeeded
+fields availble for function setters
+memoryguard - only use memory within a certain range
+
+Yul commands checkout
+Fuel labs created yul+
+
+compiler --ir flag shows the yul version of the solidity code
 
 
 

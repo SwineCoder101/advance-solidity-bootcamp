@@ -1,0 +1,32 @@
+1. What are the advantages and disadvantages of the 256 bit word length in the EVM
+Advantages:
+- It could be benificial to larger computations as the evm can store large chunks of memory in trade off for large cpu operations.
+This helps with cryptography operations without splitting words.
+
+Disadvantages:
+- It can be innefficient for small computations/operations which do not require the full 256 word length, this can result in waste of storage space
+the overhead can also result in higher gas costs
+
+
+2. What would happen if the implementation of a precompiled contract varied between Ethereum clients ?
+There would be issues with consensus across the clients as all behave differently the states would be incoherent with each other.
+If two clients come to different states of the same input of a computation that can lead to a conflict of states and cause a chain split.
+
+3. Using Remix write a simple contract that uses a memory variable, then using the debugger step through the function and inspect the memory.
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.6;
+
+contract Deploy1{
+
+    uint256 value1;
+
+    constructor(){
+        value1 = 17;
+    }
+
+    function read(uint256[] calldata results) view public returns (uint256 result){
+        require(results.length > 0, "please enter an input arr");
+        return results[0];
+    }
+}
+
