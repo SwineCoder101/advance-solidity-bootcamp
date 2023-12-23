@@ -7,7 +7,7 @@ pragma solidity 0.8.17;
 
 contract Level_2 is Isolution2 {
     
-    /function solution(uint256[10] calldata unsortedArray) external override returns (uint256[10] memory sortedArray) {
+    function solution(uint256[10] calldata unsortedArray) external override returns (uint256[10] memory sortedArray) {
         for (uint256 i = 0; i < 10; i++) {
             sortedArray[i] = unsortedArray[i];
         }

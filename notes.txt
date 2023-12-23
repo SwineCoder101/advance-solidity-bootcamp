@@ -169,10 +169,212 @@ Fuel labs created yul+
 
 compiler --ir flag shows the yul version of the solidity code
 
+----------------------------------------------------------------------------------
+Day 7
+
+Layer 1 solution - redesigning the protocol or consensus mechanism
+as you increase the number of nodes more participents to get through, BFT solution can have a negative impact on scalability
+split chains into shards, messaging between contracts will be in a specific shards
+
+off chain scaling
+
+layer 1 can be used for security
+layer 2 can be used for execution
+
+optimistic fraud proof rollup
+
+optimistic rollup - bare minimum information needed with not proofs
+
+EIP4488 - decrease the cost of the calldata
+
+make adaptations for ZKP
+
+optimisation techniques - 
+remove redundant code
+break out of loops as early as possible
+
+look at the order of the functions, test the cheaper function first
+SSTORE opcode - zero to non-zero requires a code, storage slots are either warm or compiled
+cold storage 
+warm storage
+don't store data unless if you really have to
+reduce the number of SStore operations
+packing of data on storage slots
+bytes32 is the most optimized storage type , whenever possible
+bytes is better than byte[]
+bytes1 to bytes32
+bytes32 cheaper than using string
+smaller datatypes use arrays
+
+uint vs uint256, 
+overhead of get the item out of the storage aswell
+padding done aswell when its gone onto the stack
+
+----------------------------------------------------------------------------------
+Day 8
+
+avoid public variables
+optimizer, prevent duplications
+
+if a view function is only payed by gas if its invoved from a transacitonal method
+reduce size of deployment by removing modifiers, use funcitons instead
+avoid sload and sstore in loops
+
+gas of emitting events = events k + unindexedbytes a + indexed topics b
+
+turn on optimiser when compiling
+reduce size of error message to reduce gas
+
+keccak256 is the cheapest hashing
+
+remove duplicates and dead code
+
+vanity addresses with many leading zeroes, cheaper the change would be if leading zeroes
+gas() and call () in yul saves manual gas counting, see how much gas is available before making the call
+zero address checks that are needed
+token balances uint256 value
+
+bit shifting  a & (1 << 2)  , a & (1 << 6), reduce the amount you are storing for bit words
+
+measure the performance (context is important here), make sure the code is secure
+
+Solutions:
+
+Leonardo Scantamburlo 17:59
+https://github.com/LeoScant/GasOptimization
+
+Willian Urban 18:02
+Group 7: 413735 => https://github.com/UrbanWill/foundry-gas-optimization
+Messages addressed to "Meeting Group Chat" will also appear in the meeting group chat in Team Chat
+
+Kenneth Smith 18:02
+Group 8: 149,080 gas https://github.com/mirkopezo/gas-optimisation-team-game
+
+Nelson Rodrigues Marreiros 18:02
+Group 2 : 359130  => https://github.com/NelsonRodMar/Owner-avatar-GasOptimisationFoundry-
+
+Leonardo Scantamburlo 18:03
+Group 5 => 333430 https://github.com/LeoScant/GasOptimization
+
+via-ir = true - stack too deep error, items on the stack not getting cleaned upgradability
+local variables in a function can be the root cause
+this changes the deployment costs
+iszero cuts down on opcodes
+
+/// @Solidty memory-safe-assembly
+compiler setting
+
+----------------------------------------------------------------------------------
+Day 9 - security
+
+showvase of users stealing funds
+addresses were traceable via tornado cash
+check for default values
+clearing out, items to be set to zero
+Polynetwork hack - 
+hash of a method signature and taking the first four bytes shows the fingerprint for the evm to select a specified function
+
+exploit details
+mismanagement of access rights 
+one address to have two roles
+
+bug bounty platforms
+tenderly lesson 10 slide 33
+initialize function over a constructor for upgradeability
+initialize function has the correct access control around it
+
+adding to the storage with proxy pattern, becareful not to change anything unintentially
+----------------------------------------------------------------------------------
+Day 10
+security
+require - sanitize the input
+assert - specific, used less often, verify your program
+revert - revert back to the previous state
+
+doing something unusual
+Modifiers as gaurds - make sure code is safe
+don't change any state within a modifier
+Integer divisionthank
+fallback - proxy pattern for upgradability
+Payability
+locking pragmas - fixed version of compiler when testing, ensure to use the same compiler in production use fix compiler settings
+Shadowing
+tx.origin don't use this for access control avoid it, checking msg.sender for access control
+solodity allows multiple complex inheritance
+
+attacks - 
+reentrancy attack - contracts vulnerable to re-entrance
+- statements in the code in the correct order
+not always going to be exploitable
+rekt news how contract been attacked
+safe math library, denial service
+becareful with interaction of your contract and other contracts
+
+The audit process - best practises
+offer bug bounties after putting code in production
+code freeze, introduce bugs that won't bet picked up
+
+talk to the developers to understand the intent of the contract and understand the behaviour
+
+auditing a contract for a rug pull,
+
+Estimate price quotes
+
+ERC20 approval attack
+assess the severity of the issue
+
+----------------------------------------------------------------------------------
+Day 11
+
+Formal verification and testing, automated analysis
+static analysis tool - slither
+eth-security-toolbox - docker
+zio features
+
+Monitoring - tenderly
+symbolic execution tools over fuss testing
+taint analysis
+post conditions with assert or require for the return value of an invoked function
+
+K framework, write a specification
+Solidty SMT checker
+
+lesson 12 shows many tools for testing monitory and auditing
+
+scribble
+
+cetora - aave have a document on the usage for this tool
+Mithril
+Manticore
+
+Halmos does symbolic execution
+symbolic execution - general purpose verification
+run in vscode across contracts
+
+testing - fuzzing merkle proof example slide 36 lesson 12
+Firefly - instead of ganache, collects information of tests, low level implementations 
+----------------------------------------------------------------------------------
+Day 12
+
+xcodecopy in delegate calls
+
+MEV 
+
+front running all transactions are available in a public mempool before they are mined
+- get a trade ahead of someone else's1
+back running
+sandwich attack
 
 
+MEV L2
 
+optimism
 
+oracle extractable value
+
+MEV Optimisations
+
+AA - MEV -  perform atomic multi optimisation
 
 
 

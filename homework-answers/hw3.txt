@@ -7,6 +7,8 @@ Disadvantages:
 - It can be innefficient for small computations/operations which do not require the full 256 word length, this can result in waste of storage space
 the overhead can also result in higher gas costs
 
+The 256 bit word length allows Keccak-256 hashing algorithm to run efficiently.
+
 
 2. What would happen if the implementation of a precompiled contract varied between Ethereum clients ?
 There would be issues with consensus across the clients as all behave differently the states would be incoherent with each other.
