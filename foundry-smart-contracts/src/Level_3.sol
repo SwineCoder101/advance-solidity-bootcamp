@@ -7,7 +7,7 @@ interface Isolution3 {
 
 contract Level_3 is Isolution3 {
         
-        function solution(bytes memory packed) external override returns (uint16 a, bool b, bytes6 c) {
+        function solution(bytes memory packed) pure external override returns (uint16 a, bool b, bytes6 c) {
             // calculate the memory offset of the first byte of the packed data
             assembly {
                 a := mload(add(packed, 0x20))
